@@ -1,6 +1,6 @@
 ---
 layout: note
-title: JavaScript:How to run multiple functions in parallel with async/await?
+title: JavaScript: How to call multiple functions in parallel with async/await?
 permalink: parallel-run-with-async-await
 ---
 Let us suppose, we have four asynchronous functions which we want to call in parallel. 
@@ -31,7 +31,7 @@ doAsyncTaskFour = ()=> {
 
 It is a two step process. 
 
-First, call these methods and store the returned promises.This will make all four call instantly. However, promises will not resolve just yet.
+First, call these methods and store the returned promises. This will make all four call instantly. However, promises will not resolve just yet.
 
 Second, *await* for these promises to resolve.
 
@@ -52,5 +52,18 @@ async function runInParallel {
 
 Note: Even if one promise is rejected , an error will be sent.
 
-Pro Tip: With async/await, use try and catch to handle any err.
+Pro Tip: With async/await, use try and catch to handle any error.
+
+Also, if you were to do same thing with promises instead of async/await, you can do following:
+
+```javascript
+function runInParallel {
+    return Promise.all ([
+       doAsyncTaskOne(),
+       doAsyncTaskTwo(),
+       doAsyncTaskThree(),
+       doAsyncTaskFour()
+    ])
+}
+```
 
